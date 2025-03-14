@@ -1,0 +1,355 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kurale&display=swap');
+
+/* Базовые стили */
+html, body {
+  font-family: 'Space Grotesk', sans-serif;
+  background-color: #f8f9fa;
+  color: #343a40;
+  overflow: auto; /* чтобы страница прокручивалась */
+  -ms-overflow-style: none;  /* IE и Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+
+html::-webkit-scrollbar, body::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari, Opera */
+}
+
+/* Скрытие стандартного скроллбара */
+/* Для Chrome, Safari, Opera */
+body::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+/* Для IE и Edge */
+body {
+  -ms-overflow-style: none;
+}
+
+/* Для Firefox */
+body {
+  scrollbar-width: none;
+}
+
+
+/* Header */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 70px;
+  z-index: 999;
+  font-family: "Kurale", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Footer (фиксированный) */
+.site-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  font-family: "Kurale", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Основной контент */
+main {
+  margin-top: 100px;   /* отступ для header */
+  margin-bottom: 100px; /* отступ для footer */
+}
+
+/* Заголовки и шрифты */
+header, .titlele {
+  font-family: "Kurale", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+header nav ul.nav {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 20px; /* расстояние между пунктами меню */
+  align-items: center;
+}
+
+header nav ul.nav li.nav-item a.nav-link {
+  font-family: 'Roboto', sans-serif; /* шрифт для меню */
+  font-size: 1rem;
+  font-weight: 500;
+  color: #343a40; /* базовый темный цвет */
+  text-decoration: none;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+/* При наведении и для активного пункта меняется цвет и появляется underline */
+header nav ul.nav li.nav-item a.nav-link:hover,
+header nav ul.nav li.nav-item a.nav-link.active {
+  color: #0d6efd;
+}
+header nav ul.nav li.nav-item a.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0;
+  height: 2px;
+  background: #0d6efd;
+  transition: width 0.3s ease;
+}
+header nav ul.nav li.nav-item a.nav-link:hover::after,
+header nav ul.nav li.nav-item a.nav-link.active::after {
+  width: 100%;
+}
+
+.container h2 {
+  font-weight: 500;
+}
+
+/* Фиксированные блоки для скроллов (левая и правая стороны) */
+#scrollImageLeft,
+#scrollImageRight {
+  position: fixed;
+  top: 0;
+  width: 41px;        /* базовый размер – может корректироваться */
+  height: 100vh;
+  z-index: 500;
+  overflow: hidden;
+}
+#scrollImageLeft {
+  left: 0;
+}
+#scrollImageRight {
+  right: 0;
+}
+.scroll-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Аннотация */
+blockquote.blockquote {
+  font-size: 1.2rem;
+  border-left: 5px solid #0d6efd;
+  padding-left: 1rem;
+  color: #495057;
+  margin: 1.5rem 0;
+  background: #ffffff;
+  border-radius: 5px;
+}
+
+/* Карточки для результатов */
+.card {
+  border: 1px solid rgba(0, 0, 0, 0.506);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-radius: 10px;
+}
+.card-body {
+  background-color: #ffffff;
+}
+
+/* SVG-графика */
+svg {
+  display: block;
+  margin: 20px auto;
+}
+
+/* Элементы форм */
+input.form-control {
+  border-radius: 0.5rem;
+}
+.btn {
+  border-radius: 0.5rem;
+}
+
+/* Отступы для блоков с результатами */
+#resultContainer,
+#graphResultContainer {
+  margin-top: 20px;
+}
+
+/* Toggle кнопка */
+.btn--toggle {
+  box-sizing: border-box;
+  position: relative;
+  display: inline-flex;
+  background: #fff;
+  border: none;
+  border-radius: 50px;
+  overflow: hidden;
+  cursor: pointer;
+  font-family: 'Space Grotesk', sans-serif;
+  width: 600px;
+  height: 40px;
+  padding: 0;
+}
+.btn--toggle .toggle-elm {
+  transition: color 0.3s;
+  box-sizing: border-box;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #575d60;
+  z-index: 1;
+}
+.btn--toggle .toggle-active {
+  color: #fff;
+}
+.toggling-layer {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: calc(50% - 4px);
+  height: calc(100% - 4px);
+  background: #0d6efd;
+  border-radius: 50px;
+  transition: left 0.3s;
+}
+
+/* ----------------------- */
+/* Адаптивные стили       */
+/* ----------------------- */
+
+/* Мобильные устройства (до 576px) */
+@media (max-width: 576px) {
+  header .container {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-left {
+    flex: 1;
+    text-align: left;
+  }
+  .header-menu {
+    text-align: right;
+  }
+  header nav ul.nav {
+    gap: 10px;  /* уменьшаем расстояние между пунктами */
+  }
+  header nav ul.nav li.nav-item a.nav-link {
+    font-size: 0.9rem;
+  }
+  header {
+    height: 80px;
+  }
+  .site-footer {
+    height: 60px;
+  }
+  header img {
+    height: 24px;
+    margin-bottom: 5px;
+  }
+  main {
+    margin-top: 90px;
+    margin-bottom: 70px;
+    margin-left: 25px;
+    margin-right: 25px;
+    font-size: 14px;
+  }
+  blockquote.blockquote {
+    font-size: 1rem;
+    border-left: 5px solid #0d6efd;
+    padding-left: 1rem;
+    color: #495057;
+    margin: 1.5rem 0;
+    background: #ffffff;
+    border-radius: 5px;
+  }
+  #scrollImageLeft,
+  #scrollImageRight {
+    width: 30px;
+  }
+  /* Toggle кнопка: уменьшаем ширину и высоту */
+  .btn--toggle {
+    width: 100%;
+    height: 35px;
+    font-size: 0.5rem; /* базовый размер для кнопки */
+  }
+  .btn--toggle .toggle-elm {
+    font-size: 0.7rem; /* увеличили шрифт toggle */
+  }
+}
+
+/* Планшеты (577px - 768px) */
+@media (min-width: 577px) and (max-width: 768px) {
+  header, .site-footer {
+    height: 65px;
+  }
+  main {
+    margin-top: 80px;
+    margin-bottom: 80px;
+  }
+  #scrollImageLeft,
+  #scrollImageRight {
+    width: 35px;
+  }
+  .btn--toggle {
+    width: 100%;
+    height: 38px;
+    font-size: 0.65rem;
+  }
+}
+
+/* Десктоп (от 769px и выше) */
+/* Здесь используются базовые размеры, заданные выше */
+
+/* Дополнительные корректировки для крупных экранов (от 1200px) */
+@media (min-width: 1200px) {
+  main {
+    margin-left: 100px;
+    margin-right: 100px;
+  }
+}
+
+
+/* Очень узкие устройства (до 360px) */
+@media (max-width: 360px) {
+  header .container {
+    align-items: center;
+    justify-content: center;
+  }
+  .header-left {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 5px;
+  }
+  /* Уменьшаем размер заголовка в левом блоке */
+  .header-left h1 {
+    font-size: 1.25rem; /* уменьшено для узких экранов */
+  }
+  .header-menu {
+    width: 100%;
+    text-align: center;
+  }
+  header nav ul.nav {
+    gap: 5px;
+  }
+  /* Уменьшаем размер шрифта пунктов меню */
+  header nav ul.nav li.nav-item a.nav-link {
+    font-size: 0.7rem;
+  }
+  /* Toggle кнопка: уменьшаем ширину и высоту */
+  .btn--toggle {
+    width: 100%;
+    height: 35px;
+    font-size: 0.5rem; /* базовый размер для кнопки */
+  }
+  .btn--toggle .toggle-elm {
+    font-size: 0.7rem; /* увеличили шрифт toggle */
+  }
+}
+

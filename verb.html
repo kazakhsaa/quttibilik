@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ҚҰТТЫ БІЛІК</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+  <!-- Animate.css для анимаций -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <!-- Google Fonts: Roboto -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap">
+  <!-- Собственные стили -->
+  <link rel="stylesheet" href="styles/style.css" />
+  <link rel="icon" type="image/jpeg" href="assets/img/icon.png">
+</head>
+<body class="bg-light">
+  <header class="bg-white py-3 shadow-sm">
+    <div class="container d-flex align-items-center justify-content-between">
+      <!-- Левая часть: логотип и название -->
+      <div class="header-left d-flex align-items-center">
+        <img src="assets/img/logo.png" alt="Logo" style="height: 30px;" class="me-2">
+        <h1 class="h4 mb-0">ҚҰТТЫ БІЛІК</h1>
+      </div>
+      <!-- Правая часть: меню -->
+      <nav class="header-menu">
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Ереже</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Екі буынды етістік</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  
+  
+
+  <div id="scrollImageLeft">
+    <img src="assets/img/scrollleft.png" alt="Левая версия" class="scroll-img">
+  </div>
+
+  <div id="scrollImageRight">
+    <img src="assets/img/scrollright.png" alt="Правая версия" class="scroll-img">
+  </div>
+
+  <main>
+    
+    <!-- Единый контейнер для поисковиков с переключателем -->
+    <div class="container my-5">
+      <h2 class="mb-4 text-center animate__animated animate__fadeInDown titlele">Екі буынды етістік</h2>
+      <!-- Переключатель режимов поиска -->
+      <div id="toggleContainer" class="mb-4 text-center animate__animated animate__fadeIn">
+        <button class="btn btn--toggle btn-toggle-js" id="searchToggle">
+          <span class="toggle-elm toggle-trigger-js toggle-active" data-mode="dictionary">Императив етістік</span>
+          <span class="toggle-elm toggle-trigger-js" data-mode="graph">Грамматикалық категориялы етістік</span>
+          <span class="toggling-layer"></span>
+        </button>
+      </div>
+      
+      <!-- Контейнер с формами поиска -->
+      <div id="searchContainer">
+        <!-- Форма поиска для dictionary.json -->
+        <div id="dictionarySearch" class="animate__animated animate__fadeIn">
+          <form id="searchForm" class="d-flex mb-4" role="search">
+            <input id="searchInput" type="text" class="form-control me-2" placeholder="Императив етістікті еңгізіңіз" autofocus />
+            <button id="searchButton" type="submit" class="btn btn-primary">
+              <i class="bi bi-search"></i>
+            </button>
+          </form>
+          <div id="resultContainer" class="animate__animated animate__fadeIn"></div>
+        </div>
+        <!-- Форма поиска для graph.json -->
+        <div id="graphSearch" class="animate__animated animate__fadeIn" style="display: none;">
+          <form id="searchGraphForm" class="d-flex mb-4" role="search">
+            <input id="searchGraphInput" type="text" class="form-control me-2" placeholder="Грамматикалық етістікті еңгізіңіз" />
+            <button id="searchGraphButton" type="submit" class="btn btn-primary">
+              <i class="bi bi-search"></i>
+            </button>
+          </form>
+          <div id="graphResultContainer" class="animate__animated animate__fadeIn"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer bg-white text-black py-3">
+    <div class="container d-flex justify-content-between">
+      <div>© 2025 ҚҰТТЫ БІЛІК</div>
+      <div>ЖИЕНБЕКОВА АРУЖАН</div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Скрипт приложения -->
+  <script src="scripts/app.js"></script>
+  <script src="scripts/scrollEffect.js"></script>
+  <!-- Скрипт переключения режимов поиска -->
+  <script>
+    // Переключение режимов поиска через кастомный toggle
+    document.querySelectorAll('.btn-toggle-js .toggle-trigger-js').forEach(el => {
+      el.addEventListener('click', function () {
+        // Снимаем класс toggle-active со всех элементов внутри toggle
+        document.querySelectorAll('.btn-toggle-js .toggle-trigger-js').forEach(item => item.classList.remove('toggle-active'));
+        // Добавляем toggle-active для текущего элемента
+        this.classList.add('toggle-active');
+        
+        // Перемещаем toggling layer
+        const togglingLayer = document.querySelector('.btn-toggle-js .toggling-layer');
+        if (this.dataset.mode === 'dictionary') {
+          togglingLayer.style.left = '0';
+          document.getElementById('dictionarySearch').style.display = 'block';
+          document.getElementById('graphSearch').style.display = 'none';
+        } else {
+          togglingLayer.style.left = '50%';
+          document.getElementById('graphSearch').style.display = 'block';
+          document.getElementById('dictionarySearch').style.display = 'none';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
